@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sistema de avaliação de usabilidade e aparência." />
+  <title>Site&amp;Feedback | Pesquisa de Usabilidade</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main id="mainContent">
+    <section id="loginScreen" class="login-screen" aria-labelledby="loginTitle">
+      <div class="login-copy">
+        <a class="brand" href="#" aria-label="Site e Feedback — página inicial"><span class="brand-mark">S</span> Site<span>&amp;</span>Feedback</a>
+        <div>
+          <p class="eyebrow">Pesquisa de experiência</p>
+          <h1 id="loginTitle">Melhore cada<br />detalhe digital.</h1>
+          <p class="intro">Colete percepções reais sobre a usabilidade e a aparência dos seus sistemas.</p>
+        </div>
+        <p class="credentials">Acesso de demonstração:<br /><strong>admin</strong> &nbsp;•&nbsp; <strong>admin123</strong></p>
+      </div>
+
+      <form id="loginForm" class="login-card" novalidate aria-describedby="loginError">
+        <div class="card-heading">
+          <p class="eyebrow">Boas-vindas</p>
+          <h2>Entre na sua conta</h2>
+          <p>Use suas credenciais para acessar o painel.</p>
+        </div>
+        <label for="username">Usuário</label>
+        <input id="username" name="username" type="text" autocomplete="username" placeholder="Digite seu usuário" required aria-required="true" />
+        <label for="password">Senha</label>
+        <div class="password-wrap">
+          <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Digite sua senha" required aria-required="true" />
+          <button id="togglePassword" type="button" aria-label="Mostrar senha" aria-pressed="false">◉</button>
+        </div>
+        <p id="loginError" class="form-error" role="alert"></p>
+        <button class="primary-button" type="submit">Acessar painel <span>→</span></button>
+      </form>
+    </section>
+
+    <section id="appScreen" class="app-screen hidden">
+      <aside class="sidebar" aria-label="Navegação lateral">
+        <a class="brand" href="#" aria-label="Site e Feedback — painel"><span class="brand-mark">S</span> Site<span>&amp;</span>Feedback</a>
+        <nav aria-label="Menu principal">
+          <button class="nav-link active" data-view="survey"><span>▣</span> Realizar pesquisa</button>
+          <button class="nav-link" data-view="reports"><span>▤</span> Ver relatórios</button>
+        </nav>
+        <button id="logoutButton" class="logout-button"><span>↪</span> Sair</button>
+      </aside>
+
+      <div class="content">
+        <header class="topbar">
+          <div>
+            <p id="pageEyebrow" class="eyebrow">Nova avaliação</p>
+            <h1 id="pageTitle">Pesquisa de usabilidade</h1>
+          </div>
+          <div class="user-chip"><span>AD</span><strong>Administrador</strong></div>
+        </header>
+
+        <section id="surveyView" class="view" aria-labelledby="surveyTitle">
+          <div class="survey-intro">
+            <div>
+              <h2 id="surveyTitle">Como foi a experiência?</h2>
+              <p>Responda às perguntas abaixo considerando o sistema que está sendo avaliado.</p>
+            </div>
+            <div class="scale-note"><b>0</b> Muito ruim <i></i> <b>5</b> Excelente</div>
+          </div>
+
+          <form id="surveyForm" novalidate aria-describedby="surveyError">
+            <div class="system-field">
+              <label for="systemName">Nome do sistema avaliado</label>
+              <input id="systemName" name="systemName" type="text" maxlength="80" placeholder="Ex.: Portal do aluno" required aria-required="true" />
+            </div>
+            <div id="questions" class="questions"></div>
+            <p id="surveyError" class="form-error" role="alert"></p>
+            <div class="form-actions">
+              <button id="clearButton" class="secondary-button" type="button">Limpar respostas</button>
+              <button class="primary-button" type="submit">Finalizar avaliação <span>→</span></button>
+            </div>
+          </form>
+        </section>
+
+        <section id="reportsView" class="view hidden" aria-labelledby="reportsTitle">
+          <div class="reports-heading">
+            <div>
+              <h2 id="reportsTitle">Relatórios de avaliação</h2>
+              <p>Histórico de pesquisas realizadas neste navegador.</p>
+            </div>
+            <button id="downloadAllButton" class="secondary-button" type="button">Baixar todos (.txt)</button>
+          </div>
+          <div id="reportsList" class="reports-list"></div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <div id="successModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="successTitle">
+    <div class="modal-card">
+      <div class="success-icon">✓</div>
+      <p class="eyebrow">Pesquisa registrada</p>
+      <h2 id="successTitle">Avaliação concluída!</h2>
+      <p id="successText"></p>
+      <div class="modal-score"><span>Média da avaliação</span><strong id="modalAverage">0,0</strong><small>/ 5,0</small></div>
+      <div class="modal-actions">
+        <button id="modalClose" class="secondary-button">Fechar</button>
+        <button id="downloadLastButton" class="primary-button">Baixar relatório</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
